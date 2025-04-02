@@ -20,4 +20,14 @@ class Hotel extends Model
     public function bookings() {
         return $this->hasManyThrough(Booking::class, Room::class);
     }
+    
+public function averageRating()
+{
+    return $this->reviews()->avg('rating') ?: 0;
+}
+
+public function reviewsCount()
+{
+    return $this->reviews()->count();
+}
 }
