@@ -14,9 +14,14 @@ return new class extends Migration
         Schema::create('hotels', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('location');
+            $table->foreignId('region_id')->constrained()->onDelete('cascade');
+            $table->integer('stars'); // 1-5 stars
+            $table->string('address');
             $table->text('description')->nullable();
             $table->string('image')->nullable();
+            $table->decimal('rating', 3, 1)->nullable(); // e.g. 4.5
+            $table->boolean('is_featured')->default(false);
+            $table->text('amenities')->nullable();
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ class PageController extends Controller
 
     public function hotels()
     {
-        return view('hotels');
+        return view('hotels.index');
     }
 
     public function contact()

@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-gray-900 text-white shadow-lg">
+<nav x-data="{ open: false }" class="bg-white-900 text-white shadow-lg">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="flex justify-between items-center h-16">
             <!-- Logo -->
@@ -13,25 +13,33 @@
                 <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                     {{ __('Home') }}
                 </x-nav-link>
-                <x-nav-link :href="route('hotels')" :active="request()->routeIs('hotels')">
+                <x-nav-link :href="route('hotels.index')" :active="request()->routeIs('hotels.index')">
                     {{ __('Hotels') }}
                 </x-nav-link>
                 <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
                     {{ __('Contact Us') }}
                 </x-nav-link>
+                @auth
+        @if(auth()->user()->role === 'admin') 
+            <x-nav-link >
+                {{-- :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')" --}}
+                {{ __('Admin Panel') }}
+            </x-nav-link>
+        @endif
+    @endauth
             </div>
 
             <!-- User Dropdown or Login/Register -->
             <div class="hidden md:flex items-center space-x-4">
                 @auth
+                <a href="{{ route('profile.edit') }}" class="mr-3">
+                    <i class="fa-solid fa-user text-black"></i>
+                </a>
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button class="flex items-center text-black hover:text-gray-300 focus:outline-none">
                                 <!-- Profile Icon (Clickable) -->
-                                <a href="{{ route('profile.edit') }}" class="mr-3">
-                                <i class="fa-solid fa-user"></i>
-                                   
-                                </a>
+                                
                                 <span>{{ Auth::user()->name }}</span>
                                 <svg class="ml-2 w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -53,10 +61,10 @@
                         </x-slot>
                     </x-dropdown>
                 @else
-                    <x-nav-link :href="route('login')" class="bg-blue-500 px-4 py-2 rounded-lg hover:bg-blue-600">
+                    <x-nav-link :href="route('login')" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
                         {{ __('Login') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('register')" class="bg-green-500 px-4 py-2 rounded-lg hover:bg-green-600">
+                    <x-nav-link :href="route('register')" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">
                         {{ __('Register') }}
                     </x-nav-link>
                 @endauth
@@ -64,7 +72,7 @@
 
             <!-- Mobile Menu Button -->
             <div class="md:hidden flex items-center">
-                <button @click="open = ! open" class="text-white hover:text-gray-300 focus:outline-none">
+                <button @click="open = ! open" class="text-black hover:text-gray-300 focus:outline-none">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open}" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open}" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -80,7 +88,7 @@
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
                 {{ __('Home') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('hotels')" :active="request()->routeIs('hotels')">
+            <x-responsive-nav-link :href="route('hotels.index')" :active="request()->routeIs('hotels.index')">
                 {{ __('Hotels') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
@@ -105,7 +113,7 @@
                     </form>
                 </div>
             @else
-                <x-responsive-nav-link :href="route('login')" class="bg-blue-500 text-center py-2 rounded-lg hover:bg-blue-600">
+                <x-responsive-nav-link :href="route('login')" class="bg-blue-500  text-center py-2 rounded-lg hover:bg-blue-600">
                     {{ __('Login') }}
                 </x-responsive-nav-link>
                 <x-responsive-nav-link :href="route('register')" class="bg-green-500 text-center py-2 rounded-lg hover:bg-green-600">
