@@ -11,10 +11,16 @@ use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\HotelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
+<<<<<<< HEAD
 >>>>>>> 9be42ed4ed2200b80f3882f88a1cc48054b1f24c
 Route::get('/', function () {
     return view('welcome');
 });
+=======
+use App\Http\Controllers\FeaturedHotelsController;
+Route::get('/', [FeaturedHotelsController::class, 'index']
+)->name('home');
+>>>>>>> 904fc158fd8dec37996839b19b14d6e5a2e54df8
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -28,7 +34,7 @@ Route::middleware('auth')->group(function () {
 
 
 // Home Page
-Route::get('/home', [PageController::class, 'home'])->name('home');
+Route::get('/home', [FeaturedHotelsController::class, 'index'])->name('home');
 
 // Hotels Page
 Route::get('/hotels', [HotelController::class, 'index'])->name('hotels.index');

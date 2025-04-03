@@ -18,7 +18,7 @@
             text-decoration: none;
         }
         :root {
-            --primary-color: #1e95d4;
+            --primary-color: #4a6fa5;
             --secondary-color: #7dd1df;
             --light-color: #b5e5e7;
         }
@@ -380,6 +380,30 @@
                     </div>
                 </div>
                 
+
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h5 class="mb-0"><i class="fas fa-comments me-2"></i>Guest Reviews</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div>
+                                <h6 class="mb-0">Read what our guests have to say</h6>
+                            </div>
+                            <a href="/reviews/{{ $hotel->id }}" class="btn btn-primary">
+                                <i class="fas fa-star me-1"></i> Write a Review
+                            </a>
+                        </div>
+                
+                        <!-- Placeholder for reviews summary -->
+                        <div class="text-center py-4">
+                            <i class="fas fa-comment-alt fa-3x text-secondary mb-3"></i>
+                            <p>Be the first to review this hotel!</p>
+                        </div>
+                    </div>
+                </div>
+
+
                 <!-- Location Map -->
                 <div class="card mb-4">
                     <div class="card-header">
@@ -395,7 +419,7 @@
                
             </div>
             
-            <div class="col-lg-4">
+            <div class="col-lg-4 ">
                 <!-- Book Now Card -->
                 <div class="card book-now-card mb-4">
                     <div class="card-body text-center">

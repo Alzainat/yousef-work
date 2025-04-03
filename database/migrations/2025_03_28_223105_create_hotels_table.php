@@ -22,6 +22,8 @@ return new class extends Migration
             $table->decimal('rating', 3, 1)->nullable(); // e.g. 4.5
             $table->boolean('is_featured')->default(false);
             $table->text('amenities')->nullable();
+            $table->decimal('latitude', 10, 8)->notNull();
+            $table->decimal('longitude', 11, 8)->notNull();
             $table->timestamps();
         });
     }
